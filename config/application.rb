@@ -15,7 +15,15 @@ module MyProject
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
-    config.secret_key_base = ENV["SECRET_KEY_BASE"] if Rails.env.production?
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins 'https://shteigen.onrender.com' # You can replace this with specific domains or '*' for all origins.
+        resource '*',
+          headers: :any,
+          methods: [:get, :post, :put, :patch, :delete, :options, :head],
+          credentials: true # Include this if you need to send cookies or other credentials.
+      end
+    end
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
