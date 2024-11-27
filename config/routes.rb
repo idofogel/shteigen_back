@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
+  get "home/index"
+  get "nodes_of_module", to: "addremove#getnotes"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  root "home#index"
-  # post "add_remove", to: "addremove#addremv"
+  root 'home#index'
+  post "add_remove", to: "addremove#addremv"
+  post "update_node", to: "update_node#updtend"
+  get "get_modules", to: "addremove#getmodules"
+  post "save_module", to: "addremove#addmodels"
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
