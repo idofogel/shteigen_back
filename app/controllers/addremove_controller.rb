@@ -43,7 +43,7 @@ class AddremoveController < ApplicationController
     render json: {nodes: node_data, archs: arch_data}, status: :ok
   end
   def getmodules
-    Modulekind.where(caption:"qfwegr").delete_all
+    # Modulekind.where(caption:"qfwegr").delete_all
     render json: Modulekind.all, status: :ok
   end
   def addmodels
